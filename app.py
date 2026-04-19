@@ -104,7 +104,10 @@ if st.button("Predict Salary"):
     input_scaled = scaler.transform(input_data)
 
     prediction = model.predict(input_scaled)
-    probability = model.predict_proba(input_scaled)[0][1]
+    probs = model.predict_proba(input_scaled)[0]
+    prediction = model.predict(input_scaled)[0]
+
+    confidence = probs[prediction]
 
     st.write("### Input Summary")
     st.write(input_data)
